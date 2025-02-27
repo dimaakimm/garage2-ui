@@ -1,0 +1,38 @@
+/* Общий контейнер чата */
+.chatContainer {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 16px;
+  font-family: Arial, sans-serif;
+}
+
+/* Карточка чата */
+.chatCard {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Контент сообщений */
+.chatContent {
+  height: 300px;
+  overflow-y: auto;
+  padding: 16px;
+  background-color: #888888;
+}
+
+/* Сообщения */
+.message {
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.textMessage {
+  padding: 8px 12px;
+  border-radius: 12px;
+  background-color: #e0e0e0;
+  max-width: 80%;
+}

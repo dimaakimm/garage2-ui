@@ -1,0 +1,40 @@
+.inputContainer {
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  background: white;
+  border-top: 1px solid #ccc;
+}
+
+.input {
+  flex-grow: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+}
+
+.sendButton,
+.micButton,
+.iconButton {
+  border: none;
+  background-color: #007bff;
+  color: white;
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sendButton:hover,
+.micButton:hover,
+.iconButton:hover {
+  background-color: #0056b3;
+}
+.micButton:active {
+  background-color: #0056b3;
+  transform: scale(0.95);
+}
+
