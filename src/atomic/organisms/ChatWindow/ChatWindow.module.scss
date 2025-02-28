@@ -1,26 +1,29 @@
 /* Общий контейнер чата */
 .chatContainer {
-  max-width: 500px;
+  max-width: 980px;
+  max-height: 700px;
+  height: 700px;
   margin: 0 auto;
-  padding: 16px;
+  padding: 20px;
   font-family: Arial, sans-serif;
+  border: 2px solid #E1E1E1;
+  border-radius: 15px;
 }
 
 /* Карточка чата */
 .chatCard {
+  height: 100%;
   display: flex;
   flex-direction: column;
-  border: 1px solid #ccc;
   border-radius: 8px;
   overflow: hidden;
 }
 
 /* Контент сообщений */
 .chatContent {
-  height: 300px;
+  height: 100%;
   overflow-y: auto;
   padding: 16px;
-  background-color: #888888;
 }
 
 /* Сообщения */
@@ -28,6 +31,7 @@
   margin-bottom: 8px;
   display: flex;
   align-items: center;
+  width: fit-content;
 }
 
 .textMessage {
@@ -35,4 +39,34 @@
   border-radius: 12px;
   background-color: #e0e0e0;
   max-width: 80%;
+}
+
+.audio{
+  border: 2px solid #E2E2E2;
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  border-radius: 10px;
+}
+
+.playButton{
+  background-color: transparent;
+  border: none;
+  outline: none;
+  margin-right: 15px;
+}
+
+.descriptor{
+  margin-left: 20px;
+}
+
+.owner{
+  color: #000000;
+  font-size: 16px;
+  line-height: 21px;
+  margin-bottom: 5px;
+}
+
+.isYourMessage{
+  margin-left: auto;
 }

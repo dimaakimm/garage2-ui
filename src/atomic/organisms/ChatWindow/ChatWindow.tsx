@@ -1,12 +1,14 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import styles from './ChatWindow.module.scss'
 import { Play } from 'lucide-react'
 import TextMessage from '../../molecules/TextMessage/TextMessage.tsx'
 import ChatInput from '../../molecules/ChatInput/ChatInput.tsx'
+import classNames from 'classnames'
 
 export interface Message {
     type: 'text' | 'audio'
     content: string
+    isYou: boolean
 }
 
 const ChatWindow = () => {
@@ -29,16 +31,51 @@ const ChatWindow = () => {
             <div className={styles.chatCard}>
                 <div className={styles.chatContent}>
                     {messages.map((msg, index) => (
-                        <div key={index} className={styles.message}>
+                        <div
+                            key={index}
+                            className={classNames(
+                                styles.message,
+                                msg.isYou && styles.isYourMessage
+                            )}
+                        >
                             {msg.type === 'text' ? (
                                 <TextMessage text={msg.content} />
                             ) : (
-                                <button
-                                    className={styles.iconButton}
-                                    onClick={() => handlePlayAudio(msg.content)}
-                                >
-                                    <Play size={20} />
-                                </button>
+                                <div>
+                                    <p className={styles.owner}>
+                                        {msg.isYou ? 'Вы' : 'Клиент'}
+                                    </p>
+                                    <div className={styles.audio}>
+                                        <button
+                                            className={styles.playButton}
+                                            onClick={() =>
+                                                handlePlayAudio(msg.content)
+                                            }
+                                        >
+                                            <img
+                                                src="../../../../src/assets/play-button.svg"
+                                                alt="audio"
+                                            />
+                                        </button>
+                                        {msg.isYou ? (
+                                            <img
+                                                src="../../../../src/assets/active-audio.svg"
+                                                alt="audio"
+                                            />
+                                        ) : (
+                                            <img
+                                                src="../../../../src/assets/another-audio.svg"
+                                                alt="audio"
+                                            />
+                                        )}
+
+                                        <img
+                                            className={styles.descriptor}
+                                            src="../../../../src/assets/descriptor.svg"
+                                            alt="audio"
+                                        />
+                                    </div>
+                                </div>
                             )}
                         </div>
                     ))}
