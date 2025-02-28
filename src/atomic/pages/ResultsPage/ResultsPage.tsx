@@ -32,14 +32,9 @@ const ResultsPage = () => {
                     </div>
 
                     <div className={styles.buttonSection}>
-                        <Button
-                            type="secondary"
-                            onClick={() => navigate('/results')}
-                        >
-                            Завершить попытку
-                        </Button>
-                        <Button onClick={() => navigate('/results')}>
-                            Посмотреть результат
+                        <Button type="secondary">Оспорить оценку</Button>
+                        <Button onClick={() => navigate('/')}>
+                            Вернуться к курсу
                         </Button>
                     </div>
                 </div>
