@@ -5,10 +5,16 @@ import classNames from 'classnames'
 interface ButtonProps {
     children?: React.ReactNode
     type?: 'primary' | 'secondary'
+    onClick?: () => void
 }
-const Button: React.FC<ButtonProps> = ({ children, type = 'primary' }) => {
+const Button: React.FC<ButtonProps> = ({
+    children,
+    type = 'primary',
+    onClick,
+}) => {
     return (
         <div
+            onClick={onClick}
             className={classNames(
                 styles.wrapper,
                 type === 'primary' ? styles.primary : styles.secondary

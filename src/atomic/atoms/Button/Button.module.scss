@@ -7,4 +7,11 @@
  border-radius: 5px;
   display: flex;
   gap: 10px;
+  cursor: pointer;
+}
+.secondary{
+  background-color: inherit;
+  color: #000000;
+  border-radius: 5px;
+  border: 1px solid #000000;
 }
