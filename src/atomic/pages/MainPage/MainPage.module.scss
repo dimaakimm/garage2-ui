@@ -1,8 +1,13 @@
 .wrapper{
   padding: 50px 75px;
+  height: 100vh;
+}
+.content{
   height: 100%;
+  display: flex;
 }
 .mainContent{
   width: 980px;
-  height: 70%;
+  flex: 1;
+  color: #000000;
 }

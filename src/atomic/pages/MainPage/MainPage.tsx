@@ -13,7 +13,7 @@ const MainPage: React.FC = () => {
                 AuthorAvatar={ReactComponent}
             />
             <div className={styles.content}>
-                <div className={styles.mainContent}></div>
+                <div className={styles.mainContent}>sadad</div>
             </div>
             <div className={styles.buttonSection}>
                 <Button>
