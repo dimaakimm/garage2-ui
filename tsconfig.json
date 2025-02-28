@@ -3,5 +3,17 @@
   "references": [
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }
-  ]
+  ],
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "paths": {
+    "@components/*": ["components/*"],
+    "@assets/*": ["assets/*"],
+    "@store/*": ["store/*"],
+    "@utils/*": ["utils/*"],
+    "@hooks/*": ["hooks/*"]
+  }
 }
