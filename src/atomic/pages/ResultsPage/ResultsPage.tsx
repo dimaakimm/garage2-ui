@@ -1,14 +1,15 @@
-import styles from './LectionPage.module.scss'
+import styles from './ResultsPage.module.scss'
+import SecondaryHeader from '../../organisms/SecondaryHeader/SecondaryHeader.tsx'
 import Button from '../../atoms/Button/Button.tsx'
 import ChatWindow from '../../organisms/ChatWindow/ChatWindow.tsx'
-import SecondaryHeader from '../../organisms/SecondaryHeader/SecondaryHeader.tsx'
 import { useNavigate } from 'react-router-dom'
+import CommentsSection from '../../organisms/CommentsSection/CommentsSection.tsx'
 
-const LectionPage = () => {
+const ResultsPage = () => {
     const navigate = useNavigate()
     return (
         <div className={styles.wrapper}>
-            <SecondaryHeader authorName="Алексей Волков" backUrl="/" />
+            <SecondaryHeader authorName="Алексей Волков" backUrl="/lection" />
             <div className={styles.content}>
                 <div className={styles.situationSector}>
                     <div className={styles.title}>Ситуация</div>
@@ -25,6 +26,9 @@ const LectionPage = () => {
                     </div>
                     <div className={styles.chatSector}>
                         <ChatWindow />
+                    </div>
+                    <div className={styles.commentsSector}>
+                        <CommentsSection />
                     </div>
 
                     <div className={styles.buttonSection}>
@@ -44,4 +48,4 @@ const LectionPage = () => {
     )
 }
 
-export default LectionPage
+export default ResultsPage

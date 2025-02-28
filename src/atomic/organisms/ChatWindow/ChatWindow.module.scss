@@ -1,4 +1,3 @@
-/* Общий контейнер чата */
 .chatContainer {
   max-width: 980px;
   max-height: 700px;
@@ -8,25 +7,26 @@
   font-family: Arial, sans-serif;
   border: 2px solid #E1E1E1;
   border-radius: 15px;
+  width: 100%;
 }
 
-/* Карточка чата */
 .chatCard {
   height: 100%;
   display: flex;
   flex-direction: column;
   border-radius: 8px;
-  overflow: hidden;
+  overflow-y: scroll;
+  min-height: 500px;
+  width: 100%;
 }
 
-/* Контент сообщений */
 .chatContent {
   height: 100%;
   overflow-y: auto;
   padding: 16px;
+  background-color: white;
 }
 
-/* Сообщения */
 .message {
   margin-bottom: 8px;
   display: flex;

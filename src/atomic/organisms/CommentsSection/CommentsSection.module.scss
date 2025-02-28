@@ -1,0 +1,37 @@
+.title{
+  color: #000000;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 40.98px;
+}
+.leftBox{
+  display: flex;
+  gap: 30px;
+  height: 300px;
+  border-radius: 15px;
+  background: #F9FFFA;
+  border: 2px solid #D9D9D9;
+  padding: 20px;
+  flex: 1;
+
+}
+.rightBox{
+  display: flex;
+  gap: 30px;
+  height: 300px;
+  border-radius: 15px;
+  background: #FFF7F7;
+  border: 2px solid #D9D9D9;
+  padding: 20px;
+  flex: 1;
+}
+.content{
+  display: flex;
+  gap: 20px;
+  width: 100%;
+}
+.subTitle{
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 34.15px;
+}
