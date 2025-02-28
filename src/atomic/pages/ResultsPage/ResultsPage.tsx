@@ -4,6 +4,7 @@ import Button from '../../atoms/Button/Button.tsx'
 import ChatWindow from '../../organisms/ChatWindow/ChatWindow.tsx'
 import { useNavigate } from 'react-router-dom'
 import CommentsSection from '../../organisms/CommentsSection/CommentsSection.tsx'
+import BarChart from '../../organisms/BarChart/BarChart.tsx'
 
 const ResultsPage = () => {
     const navigate = useNavigate()
@@ -27,6 +28,21 @@ const ResultsPage = () => {
                     <div className={styles.chatSector}>
                         <ChatWindow />
                     </div>
+                    <div className={styles.score}>
+                        <h2 className={styles.score_header}>Ваш результат</h2>
+                        <div className={styles.score_info}>
+                            <div className={styles.score_mark}>7/10</div>
+                            <div className={styles.score_feedback}>
+                                Очень даже хорошо, но есть <br /> к чему
+                                стремиться
+                            </div>
+                            <div className={styles.score_button}>
+                                <Button type="secondary">Смотреть подробнее</Button>
+                            </div>
+
+                        </div>
+                    </div>
+                    <BarChart />
                     <div className={styles.commentsSector}>
                         <CommentsSection />
                     </div>
