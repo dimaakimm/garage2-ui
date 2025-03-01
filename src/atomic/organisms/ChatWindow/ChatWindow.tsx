@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import styles from './ChatWindow.module.scss'
-import { Play } from 'lucide-react'
 import TextMessage from '../../molecules/TextMessage/TextMessage.tsx'
 import ChatInput from '../../molecules/ChatInput/ChatInput.tsx'
 import classNames from 'classnames'

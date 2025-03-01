@@ -1,4 +1,5 @@
 import styles from './CommentsSection.module.scss'
+import Box from '../../atoms/Box/Box.tsx'
 
 const positiveArray = [
     'Вежливый диалог',
@@ -17,26 +18,16 @@ const CommentsSection = () => {
         <div className={styles.wrapper}>
             <div className={styles.title}>Комментарии</div>
             <div className={styles.content}>
-                <div className={styles.leftBox}>
-                    <div className={styles.subTitle}>Хорошие моменты</div>
-                    <div className={styles.comments}>
-                        {positiveArray.map((item, index) => (
-                            <div className={styles.comment} key={index}>
-                                {item}
-                            </div>
-                        ))}
-                    </div>
-                </div>
-                <div className={styles.rightBox}>
-                    <div className={styles.subTitle}>Спорные моменты</div>
-                    <div className={styles.comments}>
-                        {negativeArray.map((item, index) => (
-                            <div className={styles.comment} key={index}>
-                                {item}
-                            </div>
-                        ))}
-                    </div>
-                </div>
+                <Box
+                    title="Хорошие моменты"
+                    comments={positiveArray}
+                    backgroundColor="#F9FFFA"
+                />
+                <Box
+                    title="Спорные моменты"
+                    comments={negativeArray}
+                    backgroundColor="#FFF7F7"
+                />
             </div>
         </div>
     )

@@ -5,7 +5,12 @@ import ChatWindow from '../../organisms/ChatWindow/ChatWindow.tsx'
 import { useNavigate } from 'react-router-dom'
 import CommentsSection from '../../organisms/CommentsSection/CommentsSection.tsx'
 import BarChart from '../../organisms/BarChart/BarChart.tsx'
+import DetailsComments from '../../organisms/DetailsComments/DetailsComments.tsx'
 
+const answer1 =
+    '«Здрасте! Меня зовут Егор, могу проконсультировать по машинам. Как я могу помочь?»'
+const toDevelop1 =
+    '«Здравствуйте! Меня зовут Егор, я консультант нашего автосалона. Как я могу к вам обращаться?»'
 const ResultsPage = () => {
     const navigate = useNavigate()
     return (
@@ -22,9 +27,7 @@ const ResultsPage = () => {
                         чтобы предложить подходящий автомобиль и успешно
                         завершить продажу.
                     </div>
-                    <div className={styles.button}>
-                        <Button>Начать задание</Button>
-                    </div>
+
                     <div className={styles.chatSector}>
                         <ChatWindow />
                     </div>
@@ -37,12 +40,19 @@ const ResultsPage = () => {
                                 стремиться
                             </div>
                             <div className={styles.score_button}>
-                                <Button type="secondary">Смотреть подробнее</Button>
+                                <Button type="secondary">
+                                    Смотреть подробнее
+                                </Button>
                             </div>
-
                         </div>
                     </div>
                     <BarChart />
+                    <DetailsComments
+                        answer={answer1}
+                        toDevelop={toDevelop1}
+                        hint={'стр 1 , пункт 3'}
+                        numberOfPoint={1}
+                    />
                     <div className={styles.commentsSector}>
                         <CommentsSection />
                     </div>

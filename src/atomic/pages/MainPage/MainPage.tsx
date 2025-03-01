@@ -15,7 +15,13 @@ const MainPage: React.FC = () => {
                 AuthorAvatar={ReactComponent}
             />
             <div className={styles.content}>
-                <div className={styles.mainContent}>sadad</div>
+                <div className={styles.mainContent}>
+                    <iframe
+                        src="../../../../src/assets/СкриптПродажаАвтомобиля.pdf"
+                        width="100%"
+                        height="100%"
+                    />
+                </div>
                 <div className={styles.buttonSection}>
                     <Button type="secondary">
                         <img
