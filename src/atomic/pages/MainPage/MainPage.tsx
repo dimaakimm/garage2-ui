@@ -17,7 +17,7 @@ const MainPage: React.FC = () => {
             <div className={styles.content}>
                 <div className={styles.mainContent}>
                     <iframe
-                        src="../../../../src/assets/СкриптПродажаАвтомобиля.pdf"
+                        src="../../../assets/pdf-example-document.pdf"
                         width="100%"
                         height="100%"
                     />
@@ -25,16 +25,14 @@ const MainPage: React.FC = () => {
                 <div className={styles.buttonSection}>
                     <Button type="secondary">
                         <img
-                            src="../../../../src/assets/download.svg"
-                            alt="download"
+                            src="../../../assets/download-docs.svg"
                         />
                         Скачать файл
                     </Button>
                     <Button onClick={() => navigate('/lection')}>
                         Перейти к заданию
                         <img
-                            src="../../../../src/assets/next.svg"
-                            alt="download"
+                            src="../../../assets/go-to-ans.svg"
                         />
                     </Button>
                 </div>
