@@ -21,14 +21,14 @@
 
 @font-face {
   font-family: 'Hauora';
-  src: url('src/assets/fonts/Hauora-Regular.ttf') format('truetype');
+  src: url('/fonts/Hauora-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Hauora';
-  src: url('src/assets/fonts/Hauora-Bold.ttf') format('truetype');
+  src: url('/fonts/Hauora-Bold.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
