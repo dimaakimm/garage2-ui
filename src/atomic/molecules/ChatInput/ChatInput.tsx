@@ -26,24 +26,48 @@ const ChatInput: React.FC<ChatInputProps> = ({ setMessages, messages }) => {
         }
     }
 
-    const sendMessage = (msg: string, type: 'text' | 'audio' = 'text') => {
-        setMessages([...messages, { type, content: msg, isYou: true }, { type, content: msg, isYou: false }])
+    const sendMessage = (msg: string, type: 'text' | 'audio' = 'text', isYou = true) => {
+        if (isYou) {
+            setMessages([...messages, { type, content: msg, isYou: true }])
+        } else {
+            setMessages([...messages, { type, content: msg, isYou: true }, { type, content: msg, isYou: false }])
+        }
+
         setText('')
     }
 
     const handleSendVoice = async () => {
         if (mediaBlobUrl) {
             try {
-                const response = await fetch(mediaBlobUrl) // Загружаем Blob через fetch
-                const blob = await response.blob()
-                const blobUrl = URL.createObjectURL(blob) // Создаем URL для Blob
-                sendMessage(blobUrl, 'audio')
+                // Загружаем Blob из mediaBlobUrl
+                const response = await fetch(mediaBlobUrl);
+                const blob = await response.blob();
+                const blobUrl = URL.createObjectURL(blob);
+                sendMessage(blobUrl, 'audio');
+                // Отправляем Blob на бэкенд (убедитесь, что URL корректный, например, если сервер на другом домене – настройте CORS)
+                const backendResponse = await fetch("http://51.250.34.157:8000/message", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "audio/webm"
+                    },
+                    body: blob,
+                })  .then(response => response.blob())
+                    .then(blob => {
+                        const audioUrl = URL.createObjectURL(blob);
+                        const audioElement = new Audio(audioUrl);
+                        audioElement.controls = true;
+                        document.body.appendChild(audioElement);
+                        audioElement.play();
+                    })
+                    .catch(error => console.error('Ошибка:', error));
+
+                sendMessage(blobUrl, 'audio', false);
                 setHasAudio(false);
             } catch (error) {
-                console.error('Ошибка загрузки аудио Blob:', error)
+                console.error('Ошибка при загрузке или отправке аудио Blob:', error);
             }
         }
-    }
+    };
 
     return (
         <div className={styles.inputContainer}>
