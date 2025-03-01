@@ -10,6 +10,7 @@ interface ChatInputProps {
 
 const ChatInput: React.FC<ChatInputProps> = ({ setMessages, messages }) => {
     const [text, setText] = useState<string>('')
+    const [hasAudio, setHasAudio] = useState(false);
 
     const { startRecording, stopRecording, mediaBlobUrl, status } =
         useReactMediaRecorder({
@@ -20,6 +21,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ setMessages, messages }) => {
         if(status != "recording"){
             startRecording();
         } else {
+            setHasAudio(true)
             stopRecording();
         }
     }
@@ -36,6 +38,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ setMessages, messages }) => {
                 const blob = await response.blob()
                 const blobUrl = URL.createObjectURL(blob) // Создаем URL для Blob
                 sendMessage(blobUrl, 'audio')
+                setHasAudio(false);
             } catch (error) {
                 console.error('Ошибка загрузки аудио Blob:', error)
             }
@@ -70,63 +73,80 @@ const ChatInput: React.FC<ChatInputProps> = ({ setMessages, messages }) => {
             {/*>*/}
             {/*    <Send size={20} />*/}
             {/*</button>*/}
-            <button
-                onClick={handleClick}
-                className={styles.micButton}
-            >
-                {status !== 'recording' && (
-                    <svg
-                        width="32"
-                        height="32"
-                        viewBox="0 0 32 32"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path
-                            d="M21.3334 16V8C21.3334 5.044 18.9534 2.63867 16.0281 2.63867C15.9343 2.63995 15.8409 2.65112 15.7494 2.67201C14.3804 2.73838 13.0893 3.32848 12.1433 4.32021C11.1972 5.31194 10.6686 6.6294 10.6667 8V16C10.6667 18.9413 13.0587 21.3333 16.0001 21.3333C18.9414 21.3333 21.3334 18.9413 21.3334 16ZM13.3334 16V8C13.3334 6.52934 14.5294 5.33334 16.0001 5.33334C16.073 5.33262 16.1456 5.32593 16.2174 5.31334C17.5841 5.41334 18.6667 6.58 18.6667 8V16C18.6667 17.4707 17.4707 18.6667 16.0001 18.6667C14.5294 18.6667 13.3334 17.4707 13.3334 16Z"
-                            fill="#4760F0"
-                        />
-                        <path
-                            d="M7.99992 16H5.33325C5.33325 21.4293 9.41459 25.9147 14.6666 26.5747V29.3333H17.3333V26.5747C22.5853 25.9147 26.6666 21.4307 26.6666 16H23.9999C23.9999 20.412 20.4119 24 15.9999 24C11.5879 24 7.99992 20.412 7.99992 16Z"
-                            fill="#4760F0"
-                        />
-                    </svg>
-                )}
+            {!hasAudio && (
+                <button onClick={handleClick} className={styles.micButton}>
+                    {status !== 'recording' && (
+                        <svg
+                            width="32"
+                            height="32"
+                            viewBox="0 0 32 32"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M21.3334 16V8C21.3334 5.044 18.9534 2.63867 16.0281 2.63867C15.9343 2.63995 15.8409 2.65112 15.7494 2.67201C14.3804 2.73838 13.0893 3.32848 12.1433 4.32021C11.1972 5.31194 10.6686 6.6294 10.6667 8V16C10.6667 18.9413 13.0587 21.3333 16.0001 21.3333C18.9414 21.3333 21.3334 18.9413 21.3334 16ZM13.3334 16V8C13.3334 6.52934 14.5294 5.33334 16.0001 5.33334C16.073 5.33262 16.1456 5.32593 16.2174 5.31334C17.5841 5.41334 18.6667 6.58 18.6667 8V16C18.6667 17.4707 17.4707 18.6667 16.0001 18.6667C14.5294 18.6667 13.3334 17.4707 13.3334 16Z"
+                                fill="#4760F0"
+                            />
+                            <path
+                                d="M7.99992 16H5.33325C5.33325 21.4293 9.41459 25.9147 14.6666 26.5747V29.3333H17.3333V26.5747C22.5853 25.9147 26.6666 21.4307 26.6666 16H23.9999C23.9999 20.412 20.4119 24 15.9999 24C11.5879 24 7.99992 20.412 7.99992 16Z"
+                                fill="#4760F0"
+                            />
+                        </svg>
+                    )}
 
-                {status === 'recording' && (
-                    <svg
-                        width="32"
-                        height="32"
-                        viewBox="0 0 32 32"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path
-                            fill-rule="evenodd"
-                            clip-rule="evenodd"
-                            d="M5.33337 7.99992C5.33337 7.29267 5.61433 6.6144 6.11442 6.1143C6.61452 5.6142 7.2928 5.33325 8.00004 5.33325H24C24.7073 5.33325 25.3856 5.6142 25.8857 6.1143C26.3858 6.6144 26.6667 7.29267 26.6667 7.99992V23.9999C26.6667 24.7072 26.3858 25.3854 25.8857 25.8855C25.3856 26.3856 24.7073 26.6666 24 26.6666H8.00004C7.2928 26.6666 6.61452 26.3856 6.11442 25.8855C5.61433 25.3854 5.33337 24.7072 5.33337 23.9999V7.99992ZM24 7.99992H8.00004V23.9999H24V7.99992Z"
-                            fill="#4760F0"
-                        />
-                    </svg>
-                )}
-            </button>
-            {mediaBlobUrl && (
-                <button onClick={handleSendVoice} className={styles.sendButton}>
-                    <svg
-                        width="32"
-                        height="32"
-                        viewBox="0 0 32 32"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path
-                            fill-rule="evenodd"
-                            clip-rule="evenodd"
-                            d="M23.988 8.01337L7.19872 14.084L12.792 17.3214L17.724 12.388C17.9742 12.138 18.3135 11.9976 18.6672 11.9978C19.0209 11.9979 19.36 12.1385 19.61 12.3887C19.8601 12.6389 20.0004 12.9781 20.0003 13.3318C20.0002 13.6855 19.8596 14.0247 19.6094 14.2747L14.676 19.208L17.916 24.8L23.988 8.01337ZM24.4187 5.02137C26.012 4.44404 27.556 5.98804 26.9787 7.58137L19.936 27.0547C19.3574 28.652 17.176 28.8467 16.324 27.376L12.0347 19.9654L4.62405 15.676C3.15338 14.824 3.34805 12.6427 4.94538 12.064L24.4187 5.02137Z"
-                            fill="#4760F0"
-                        />
-                    </svg>
+                    {status === 'recording' && (
+                        <svg
+                            width="32"
+                            height="32"
+                            viewBox="0 0 32 32"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M5.33337 7.99992C5.33337 7.29267 5.61433 6.6144 6.11442 6.1143C6.61452 5.6142 7.2928 5.33325 8.00004 5.33325H24C24.7073 5.33325 25.3856 5.6142 25.8857 6.1143C26.3858 6.6144 26.6667 7.29267 26.6667 7.99992V23.9999C26.6667 24.7072 26.3858 25.3854 25.8857 25.8855C25.3856 26.3856 24.7073 26.6666 24 26.6666H8.00004C7.2928 26.6666 6.61452 26.3856 6.11442 25.8855C5.61433 25.3854 5.33337 24.7072 5.33337 23.9999V7.99992ZM24 7.99992H8.00004V23.9999H24V7.99992Z"
+                                fill="#4760F0"
+                            />
+                        </svg>
+                    )}
                 </button>
+            )}
+            {hasAudio && (
+                <>
+                    <button
+                        onClick={() => {setHasAudio(false)}}
+                        className={styles.sendButton}
+                    >
+                        <img
+                            // className={}
+                            src="/trash.svg"
+                            alt="audio"
+                        />
+                    </button>
+                    <div className={styles.trash}>
+
+                    </div>
+                    <button
+                        onClick={handleSendVoice}
+                        className={styles.sendButton}
+                    >
+                        <svg
+                            width="32"
+                            height="32"
+                            viewBox="0 0 32 32"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M23.988 8.01337L7.19872 14.084L12.792 17.3214L17.724 12.388C17.9742 12.138 18.3135 11.9976 18.6672 11.9978C19.0209 11.9979 19.36 12.1385 19.61 12.3887C19.8601 12.6389 20.0004 12.9781 20.0003 13.3318C20.0002 13.6855 19.8596 14.0247 19.6094 14.2747L14.676 19.208L17.916 24.8L23.988 8.01337ZM24.4187 5.02137C26.012 4.44404 27.556 5.98804 26.9787 7.58137L19.936 27.0547C19.3574 28.652 17.176 28.8467 16.324 27.376L12.0347 19.9654L4.62405 15.676C3.15338 14.824 3.34805 12.6427 4.94538 12.064L24.4187 5.02137Z"
+                                fill="#4760F0"
+                            />
+                        </svg>
+                    </button>
+                </>
             )}
         </div>
     )
