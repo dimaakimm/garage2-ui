@@ -45,7 +45,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ setMessages, messages }) => {
                 const blobUrl = URL.createObjectURL(blob);
                 sendMessage(blobUrl, 'audio');
                 // Отправляем Blob на бэкенд (убедитесь, что URL корректный, например, если сервер на другом домене – настройте CORS)
-                const backendResponse = await fetch("http://51.250.34.157:8000/message", {
+                await fetch("http://51.250.34.157:8000/message", {
                     method: "POST",
                     headers: {
                         "Content-Type": "audio/webm"
