@@ -52,25 +52,25 @@ const ChatWindow = () => {
                                             }
                                         >
                                             <img
-                                                src="../../../../public/play-button.svg"
+                                                src="/play-button.svg"
                                                 alt="audio"
                                             />
                                         </button>
                                         {msg.isYou ? (
                                             <img
-                                                src="../../../../public/active-audio.svg"
+                                                src="/active-audio.svg"
                                                 alt="audio"
                                             />
                                         ) : (
                                             <img
-                                                src="../../../../public/another-audio.svg"
+                                                src="/another-audio.svg"
                                                 alt="audio"
                                             />
                                         )}
 
                                         <img
                                             className={styles.descriptor}
-                                            src="../../../../public/descriptor.svg"
+                                            src="/descriptor.svg"
                                             alt="audio"
                                         />
                                     </div>

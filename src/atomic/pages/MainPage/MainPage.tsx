@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './MainPage.module.scss'
 import Header from '../../organisms/Header/Header.tsx'
-import ReactComponent from '../../../../public/authorAvatar.svg'
+import ReactComponent from '/authorAvatar.svg'
 import Button from '../../atoms/Button/Button.tsx'
 import { useNavigate } from 'react-router-dom'
 
@@ -17,7 +17,7 @@ const MainPage: React.FC = () => {
             <div className={styles.content}>
                 <div className={styles.mainContent}>
                     <iframe
-                        src="../../../../public/pdf-example-document.pdf"
+                        src="/pdf-example-document.pdf"
                         width="100%"
                         height="100%"
                     />
@@ -25,14 +25,14 @@ const MainPage: React.FC = () => {
                 <div className={styles.buttonSection}>
                     <Button type="secondary">
                         <img
-                            src="../../../../public/download-docs.svg"
+                            src="/download-docs.svg"
                         />
                         Скачать файл
                     </Button>
                     <Button onClick={() => navigate('/lection')}>
                         Перейти к заданию
                         <img
-                            src="../../../../public/go-to-ans.svg"
+                            src="/go-to-ans.svg"
                         />
                     </Button>
                 </div>

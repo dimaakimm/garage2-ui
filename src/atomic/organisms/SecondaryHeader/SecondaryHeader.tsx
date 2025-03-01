@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './SecondaryHeader.module.scss'
 import { useNavigate } from 'react-router-dom'
 import Button from '../../atoms/Button/Button.tsx'
-import BackSvg from '../../../../public/back.svg'
+import BackSvg from '/back.svg'
 
 interface SecondaryHeaderProps {
     authorName: string
